@@ -24,6 +24,16 @@
         {
         }
 
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Feature> Features { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<ProductFeature> ProductFeatures { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
@@ -72,6 +82,9 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            // Primary key for mapping table
+            builder.Entity<ProductFeature>(entity => entity.HasKey(pf => new { pf.ProductId, pf.FeatureId }));
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
