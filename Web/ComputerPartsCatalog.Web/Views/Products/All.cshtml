@@ -1,0 +1,45 @@
+﻿@using ComputerPartsCatalog.Common
+@model ComputerPartsCatalog.Web.ViewModels.Products.ProductsListViewModel
+@{
+    this.ViewData["Title"] = "All Products";
+}
+
+<h1 class="text-white">@this.ViewData["Title"]</h1>
+
+<div class="row">
+    @foreach (var product in this.Model.Products)
+    {
+        <div class="card col-md-4">
+            <div class="card-header">
+                <img class="card-img" width="100" src="@product.ImageUrl" alt="...">
+            </div>
+            <div class="card-body">
+                <h4 class="card-title mt-2">@product.Name</h4>
+                <hr />
+                <h5 class="card-title mt-2">@product.Price</h5>
+            </div>
+            <div class="card-footer">
+                <a href="#a" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+    }
+</div>
+
+<hr />
+<ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+        <a class="page-link" href="#a"><i class="fas fa-long-arrow-alt-left"></i></a>
+    </li>
+    <li class="page-item active">
+        <a class="page-link" href="#a">1</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" href="#a">2</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" href="#a">3</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" href="#a"><i class="fas fa-long-arrow-alt-right"></i></a>
+    </li>
+</ul>
