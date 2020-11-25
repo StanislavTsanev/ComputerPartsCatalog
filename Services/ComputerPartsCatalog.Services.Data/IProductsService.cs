@@ -10,5 +10,7 @@
         Task CreateAsync(AddProductInputModel input, string userId);
 
         IEnumerable<T> GetAll<T>(int page, int productsPerPage = 12);
+
+        int GetCount();
     }
 }

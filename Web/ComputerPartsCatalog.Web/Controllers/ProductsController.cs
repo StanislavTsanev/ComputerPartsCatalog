@@ -49,10 +49,13 @@
 
         public IActionResult All(int id = 1)
         {
+            const int ItemsPerPage = 12;
             var viewModel = new ProductsListViewModel()
             {
+                Products = this.productsService.GetAll<ProductSimpleViewModel>(id, ItemsPerPage),
                 PageNumber = id,
-                Products = this.productsService.GetAll<ProductSimpleViewModel>(id, 12),
+                ProductsCount = this.productsService.GetCount(),
+                ItemsPerPage = ItemsPerPage,
             };
 
             return this.View(viewModel);
