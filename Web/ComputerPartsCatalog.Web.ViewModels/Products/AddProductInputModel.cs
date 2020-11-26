@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Microsoft.AspNetCore.Http;
+
     public class AddProductInputModel
     {
         [Required]
@@ -18,6 +20,8 @@
 
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
+
+        public IEnumerable<IFormFile> Images { get; set; }
 
         public IEnumerable<ProductFeatureInputModel> Features { get; set; }
 

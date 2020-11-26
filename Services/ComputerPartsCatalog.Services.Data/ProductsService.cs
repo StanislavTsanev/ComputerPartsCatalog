@@ -1,6 +1,8 @@
 ﻿namespace ComputerPartsCatalog.Services.Data
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -11,6 +13,7 @@
 
     public class ProductsService : IProductsService
     {
+        private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Product> productsRepository;
         private readonly IDeletableEntityRepository<Feature> featuresRepository;
 
@@ -20,7 +23,7 @@
             this.featuresRepository = featuresRepository;
         }
 
-        public async Task CreateAsync(AddProductInputModel input, string userId)
+        public async Task CreateAsync(AddProductInputModel input, string userId, string imagePath)
         {
             var product = new Product()
             {
@@ -31,23 +34,42 @@
                 UserId = userId,
             };
 
-            if (input.Features != null)
+            foreach (var inputFeature in input.Features)
             {
-                foreach (var inputFeature in input.Features)
+                var feature = this.featuresRepository.All().FirstOrDefault(x => x.Name == inputFeature.Name && x.Type == inputFeature.Type);
+
+                if (feature == null)
                 {
-                    var feature = this.featuresRepository.All().FirstOrDefault(x => x.Name == inputFeature.Name && x.Type == inputFeature.Type);
-
-                    if (feature == null)
-                    {
-                        feature = new Feature { Name = inputFeature.Name, Type = inputFeature.Type };
-                    }
-
-                    product.ProductFeatures.Add(new ProductFeature
-                    {
-                        Feature = feature,
-                        Product = product,
-                    });
+                    feature = new Feature { Name = inputFeature.Name, Type = inputFeature.Type };
                 }
+
+                product.ProductFeatures.Add(new ProductFeature
+                {
+                    Feature = feature,
+                    Product = product,
+                });
+            }
+
+            // /wwwroot/img/products/{id}.{ext}
+            Directory.CreateDirectory($"{imagePath}/products/");
+            foreach (var image in input.Images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+                if (!this.AllowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension {extension}");
+                }
+
+                var dbImage = new Image
+                {
+                    UserId = userId,
+                    Extension = extension,
+                };
+                product.Images.Add(dbImage);
+
+                var physicalPath = $"{imagePath}/products/{dbImage.Id}.{extension}";
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await image.CopyToAsync(fileStream);
             }
 
             await this.productsRepository.AddAsync(product);

@@ -1,11 +1,13 @@
 ﻿namespace ComputerPartsCatalog.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using ComputerPartsCatalog.Data.Models;
     using ComputerPartsCatalog.Services.Data;
     using ComputerPartsCatalog.Web.ViewModels.Products;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -14,12 +16,18 @@
         private readonly ICategoriesService categoriesService;
         private readonly IProductsService productsService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IWebHostEnvironment environment;
 
-        public ProductsController(ICategoriesService categoriesService, IProductsService productsService, UserManager<ApplicationUser> userManager)
+        public ProductsController(
+            ICategoriesService categoriesService,
+            IProductsService productsService,
+            UserManager<ApplicationUser> userManager,
+            IWebHostEnvironment environment)
         {
             this.categoriesService = categoriesService;
             this.productsService = productsService;
             this.userManager = userManager;
+            this.environment = environment;
         }
 
         [Authorize]
@@ -42,7 +50,14 @@
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.productsService.CreateAsync(input, user.Id);
+            try
+            {
+                await this.productsService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/img");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+            }
 
             return this.Redirect("/");
         }

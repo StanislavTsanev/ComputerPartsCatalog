@@ -7,7 +7,7 @@
 
     public interface IProductsService
     {
-        Task CreateAsync(AddProductInputModel input, string userId);
+        Task CreateAsync(AddProductInputModel input, string userId, string imagePath);
 
         IEnumerable<T> GetAll<T>(int page, int productsPerPage = 12);
 
