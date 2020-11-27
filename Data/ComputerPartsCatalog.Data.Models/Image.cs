@@ -1,5 +1,6 @@
 ﻿using ComputerPartsCatalog.Data.Common.Models;
 using System;
+using System.Collections.Generic;
 
 namespace ComputerPartsCatalog.Data.Models
 {
@@ -10,16 +11,12 @@ namespace ComputerPartsCatalog.Data.Models
             this.Id = Guid.NewGuid().ToString();
         }
 
-        public int ProductId { get; set; }
-
-        public virtual Product Product { get; set; }
-
         public string Extension { get; set; }
 
         public string RemoteImageUrl { get; set; }
 
         public string UserId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

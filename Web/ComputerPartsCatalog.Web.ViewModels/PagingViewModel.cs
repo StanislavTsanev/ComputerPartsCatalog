@@ -14,10 +14,12 @@
 
         public int NextPageNumber => this.PageNumber + 1;
 
-        public int PagesCount => (int)Math.Ceiling((double)this.ProductsCount / this.ItemsPerPage);
+        public int ItemsPerPage { get; set; }
 
         public int ProductsCount { get; set; }
 
-        public int ItemsPerPage { get; set; }
+        public int PagesCount => (int)Math.Ceiling((double)this.ProductsCount / this.ItemsPerPage);
+
+
     }
 }

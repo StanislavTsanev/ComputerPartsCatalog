@@ -25,9 +25,9 @@
             configuration.CreateMap<Product, ProductSimpleViewModel>()
                 .ForMember(x => x.ImageUrl, opt =>
                     opt.MapFrom(x =>
-                    x.Images.FirstOrDefault().RemoteImageUrl != null ?
-                    x.Images.FirstOrDefault().RemoteImageUrl :
-                    "/img/products/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
+                    x.Image.RemoteImageUrl != null ?
+                    x.Image.RemoteImageUrl :
+                    "/img/products/" + x.Image.Id + "." + x.Image.Extension));
         }
     }
 }

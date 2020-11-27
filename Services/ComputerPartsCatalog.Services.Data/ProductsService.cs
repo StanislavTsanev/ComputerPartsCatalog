@@ -13,7 +13,6 @@
 
     public class ProductsService : IProductsService
     {
-        private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Product> productsRepository;
         private readonly IDeletableEntityRepository<Feature> featuresRepository;
 
@@ -52,25 +51,18 @@
 
             // /wwwroot/img/products/{id}.{ext}
             Directory.CreateDirectory($"{imagePath}/products/");
-            foreach (var image in input.Images)
+            var extension = Path.GetExtension(input.Image.FileName).TrimStart('.');
+
+            var dbImage = new Image
             {
-                var extension = Path.GetExtension(image.FileName).TrimStart('.');
-                if (!this.AllowedExtensions.Any(x => extension.EndsWith(x)))
-                {
-                    throw new Exception($"Invalid image extension {extension}");
-                }
+                UserId = userId,
+                Extension = extension,
+            };
+            product.Image = dbImage;
 
-                var dbImage = new Image
-                {
-                    UserId = userId,
-                    Extension = extension,
-                };
-                product.Images.Add(dbImage);
-
-                var physicalPath = $"{imagePath}/products/{dbImage.Id}.{extension}";
-                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
-                await image.CopyToAsync(fileStream);
-            }
+            var physicalPath = $"{imagePath}/products/{dbImage.Id}.{extension}";
+            using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+            await input.Image.CopyToAsync(fileStream);
 
             await this.productsRepository.AddAsync(product);
             await this.productsRepository.SaveChangesAsync();

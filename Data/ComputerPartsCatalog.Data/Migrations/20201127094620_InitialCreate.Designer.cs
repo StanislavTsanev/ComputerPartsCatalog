@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComputerPartsCatalog.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201124092812_InitialCreate")]
+    [Migration("20201127094620_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,9 +216,6 @@ namespace ComputerPartsCatalog.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("RemoteImageUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -226,8 +223,6 @@ namespace ComputerPartsCatalog.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
 
@@ -253,6 +248,9 @@ namespace ComputerPartsCatalog.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImageId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -271,6 +269,8 @@ namespace ComputerPartsCatalog.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ImageId");
 
                     b.HasIndex("IsDeleted");
 
@@ -432,12 +432,6 @@ namespace ComputerPartsCatalog.Data.Migrations
 
             modelBuilder.Entity("ComputerPartsCatalog.Data.Models.Image", b =>
                 {
-                    b.HasOne("ComputerPartsCatalog.Data.Models.Product", "Product")
-                        .WithMany("Images")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("ComputerPartsCatalog.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
@@ -450,6 +444,10 @@ namespace ComputerPartsCatalog.Data.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("ComputerPartsCatalog.Data.Models.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
 
                     b.HasOne("ComputerPartsCatalog.Data.Models.ApplicationUser", "User")
                         .WithMany()

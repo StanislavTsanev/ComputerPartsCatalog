@@ -7,7 +7,6 @@ namespace ComputerPartsCatalog.Data.Models
     {
         public Product()
         {
-            this.Images = new HashSet<Image>();
             this.ProductFeatures = new HashSet<ProductFeature>();
         }
 
@@ -19,14 +18,16 @@ namespace ComputerPartsCatalog.Data.Models
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public string UserId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
-        public ICollection<Image> Images { get; set; }
+        public string ImageId { get; set; }
 
-        public ICollection<ProductFeature> ProductFeatures { get; set; }
+        public virtual Image Image { get; set; }
+
+        public virtual ICollection<ProductFeature> ProductFeatures { get; set; }
     }
 }

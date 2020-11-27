@@ -14,6 +14,6 @@ namespace ComputerPartsCatalog.Data.Models
 
         public string Type { get; set; }
 
-        public ICollection<ProductFeature> ProductFeatures { get; set; }
+        public virtual ICollection<ProductFeature> ProductFeatures { get; set; }
     }
 }

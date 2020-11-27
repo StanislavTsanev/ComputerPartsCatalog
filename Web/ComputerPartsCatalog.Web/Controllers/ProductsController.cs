@@ -50,14 +50,7 @@
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-            try
-            {
-                await this.productsService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/img");
-            }
-            catch (Exception ex)
-            {
-                this.ModelState.AddModelError(string.Empty, ex.Message);
-            }
+            await this.productsService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/img");
 
             return this.Redirect("/");
         }
