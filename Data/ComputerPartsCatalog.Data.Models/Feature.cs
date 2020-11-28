@@ -1,8 +1,9 @@
-﻿using ComputerPartsCatalog.Data.Common.Models;
-using System.Collections.Generic;
-
-namespace ComputerPartsCatalog.Data.Models
+﻿namespace ComputerPartsCatalog.Data.Models
 {
+    using System.Collections.Generic;
+
+    using ComputerPartsCatalog.Data.Common.Models;
+
     public class Feature : BaseDeletableModel<int>
     {
         public Feature()

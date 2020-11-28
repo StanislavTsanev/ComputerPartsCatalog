@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -22,6 +22,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ComputerPartsCatalog.Data.Models\ComputerPartsCatalog.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\ComputerPartsCatalog.Services.Mapping\ComputerPartsCatalog.Services.Mapping.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\" />
   </ItemGroup>
 
 </Project>

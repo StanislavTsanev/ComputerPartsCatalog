@@ -8,25 +8,28 @@
 
 <hr />
 <partial name="_PagingPartial" model="@Model">
-<hr />
+    <hr />
     <div class="row">
+
         @foreach (var product in this.Model.Products)
         {
-            <div class="card col-md-4">
+            <div class="card text-center col-md-4">
                 <div class="card-header">
-                    <img class="card-img" width="100" src="@product.ImageUrl" alt="...">
+                    <img class="card-img w-50" src="@product.ImageUrl" alt="...">
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title mt-2">@product.Name</h4>
+                    <h5 class="card-title mt-2">@product.Name</h5>
                     <hr />
-                    <h5 class="card-title mt-2">@product.Price</h5>
+                    <h6 class="card-title mt-2">Price:@product.Price$</h6>
                 </div>
+                <hr />
                 <div class="card-footer">
-                    <a href="#a" class="btn btn-warning">Details</a>
+                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning">Details</a>
                 </div>
             </div>
         }
     </div>
+
 
     <hr />
     <partial name="_PagingPartial" model="@Model">

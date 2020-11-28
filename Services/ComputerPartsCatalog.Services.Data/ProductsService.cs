@@ -80,6 +80,16 @@
             return products;
         }
 
+        public T GetById<T>(int id)
+        {
+            var product = this.productsRepository.AllAsNoTracking()
+                .Where(p => p.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+
+            return product;
+        }
+
         public int GetCount()
         {
             return this.productsRepository.All().Count();

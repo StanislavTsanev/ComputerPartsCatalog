@@ -12,5 +12,7 @@
         IEnumerable<T> GetAll<T>(int page, int productsPerPage = 12);
 
         int GetCount();
+
+        T GetById<T>(int id);
     }
 }
