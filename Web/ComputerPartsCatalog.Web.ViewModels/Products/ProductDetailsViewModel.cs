@@ -31,7 +31,7 @@
         {
             configuration.CreateMap<Product, ProductDetailsViewModel>()
                 .ForMember(x => x.AverageRating, opt =>
-                    opt.MapFrom(x => x.Ratings.Average(r => r.Value)))
+                    opt.MapFrom(x => x.Ratings.Count() == 0 ? 0 : x.Ratings.Average(r => r.Value)))
                 .ForMember(x => x.ImageUrl, opt =>
                     opt.MapFrom(x =>
                     x.Image.RemoteImageUrl != null ?
