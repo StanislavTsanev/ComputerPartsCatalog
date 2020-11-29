@@ -32,6 +32,8 @@
 
         public DbSet<Image> Images { get; set; }
 
+        public DbSet<Rating> Ratings { get; set; }
+
         public DbSet<ProductFeature> ProductFeatures { get; set; }
 
         public DbSet<Setting> Settings { get; set; }

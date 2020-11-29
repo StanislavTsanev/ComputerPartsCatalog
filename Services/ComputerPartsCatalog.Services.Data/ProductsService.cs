@@ -29,6 +29,7 @@
                 Name = input.Name,
                 Brand = input.Brand,
                 Price = input.Price,
+                Description = input.Description,
                 CategoryId = input.CategoryId,
                 UserId = userId,
             };

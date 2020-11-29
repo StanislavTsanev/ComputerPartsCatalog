@@ -248,6 +248,7 @@ namespace ComputerPartsCatalog.Data.Migrations
                     Name = table.Column<string>(nullable: true),
                     Brand = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
                     ImageId = table.Column<string>(nullable: true)

@@ -1,7 +1,5 @@
 ﻿namespace ComputerPartsCatalog.Web.ViewModels.Products
 {
-    using System.Linq;
-
     using AutoMapper;
     using ComputerPartsCatalog.Data.Models;
     using ComputerPartsCatalog.Services.Mapping;

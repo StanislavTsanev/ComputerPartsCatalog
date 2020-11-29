@@ -19,6 +19,9 @@
         [Range(typeof(decimal), "0", "79228162514264337593543950335")]
         public decimal Price { get; set; }
 
+        [MaxLength(1000)]
+        public string Description { get; set; }
+
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 

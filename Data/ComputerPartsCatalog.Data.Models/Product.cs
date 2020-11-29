@@ -8,6 +8,7 @@ namespace ComputerPartsCatalog.Data.Models
         public Product()
         {
             this.ProductFeatures = new HashSet<ProductFeature>();
+            this.Ratings = new HashSet<Rating>();
         }
 
         public string Name { get; set; }
@@ -15,6 +16,8 @@ namespace ComputerPartsCatalog.Data.Models
         public string Brand { get; set; }
 
         public decimal Price { get; set; }
+
+        public string Description { get; set; }
 
         public int CategoryId { get; set; }
 
@@ -29,5 +32,7 @@ namespace ComputerPartsCatalog.Data.Models
         public virtual Image Image { get; set; }
 
         public virtual ICollection<ProductFeature> ProductFeatures { get; set; }
+
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }
