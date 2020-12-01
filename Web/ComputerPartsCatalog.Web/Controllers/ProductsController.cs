@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-
+    using ComputerPartsCatalog.Common;
     using ComputerPartsCatalog.Data.Models;
     using ComputerPartsCatalog.Services.Data;
     using ComputerPartsCatalog.Web.ViewModels.Products;
@@ -40,7 +40,7 @@
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Add(AddProductInputModel input)
         {
             if (!this.ModelState.IsValid)

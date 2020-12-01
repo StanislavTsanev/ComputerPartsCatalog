@@ -1,9 +1,10 @@
 ﻿namespace ComputerPartsCatalog.Data.Seeding
 {
-    using ComputerPartsCatalog.Data.Models;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using ComputerPartsCatalog.Data.Models;
 
     public class CategoriesSeeder : ISeeder
     {

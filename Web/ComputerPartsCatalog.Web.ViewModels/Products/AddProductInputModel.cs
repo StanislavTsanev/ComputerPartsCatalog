@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using ComputerPartsCatalog.Web.ViewModels.ValidationAttributes;
+    using ComputerPartsCatalog.Web.Infrastructure.ValidatorAttributes;
     using Microsoft.AspNetCore.Http;
 
     public class AddProductInputModel

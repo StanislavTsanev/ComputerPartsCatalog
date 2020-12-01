@@ -1,4 +1,4 @@
-﻿namespace ComputerPartsCatalog.Web.ViewModels.ValidationAttributes
+﻿namespace ComputerPartsCatalog.Web.Infrastructure.ValidatorAttributes
 {
     using System.ComponentModel.DataAnnotations;
 
