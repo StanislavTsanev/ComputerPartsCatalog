@@ -10,6 +10,7 @@
     using ComputerPartsCatalog.Data.Models;
     using ComputerPartsCatalog.Services.Mapping;
     using ComputerPartsCatalog.Web.ViewModels.Products;
+    using Microsoft.EntityFrameworkCore;
 
     public class ProductsService : IProductsService
     {
@@ -69,14 +70,14 @@
             await this.productsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int productsPerPage = 12)
+        public async Task<IEnumerable<T>> GetAll<T>(int page, int productsPerPage = 12)
         {
-            var products = this.productsRepository.AllAsNoTracking()
+            var products = await this.productsRepository.AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * productsPerPage)
                 .Take(productsPerPage)
                 .To<T>()
-                .ToList();
+                .ToListAsync();
 
             return products;
         }
@@ -94,6 +95,15 @@
         public int GetCount()
         {
             return this.productsRepository.All().Count();
+        }
+
+        public async Task<IEnumerable<T>> GetRandom<T>(int count)
+        {
+            return await this.productsRepository.All()
+                .OrderBy(x => Guid.NewGuid())
+                .Take(count)
+                .To<T>()
+                .ToListAsync();
         }
     }
 }

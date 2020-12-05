@@ -9,7 +9,9 @@
     {
         Task CreateAsync(AddProductInputModel input, string userId, string imagePath);
 
-        IEnumerable<T> GetAll<T>(int page, int productsPerPage = 12);
+        Task<IEnumerable<T>> GetAll<T>(int page, int productsPerPage = 12);
+
+        Task<IEnumerable<T>> GetRandom<T>(int count);
 
         int GetCount();
 

@@ -5,6 +5,7 @@
 
     using ComputerPartsCatalog.Data.Common.Repositories;
     using ComputerPartsCatalog.Data.Models;
+    using ComputerPartsCatalog.Services.Mapping;
 
     public class CategoriesService : ICategoriesService
     {

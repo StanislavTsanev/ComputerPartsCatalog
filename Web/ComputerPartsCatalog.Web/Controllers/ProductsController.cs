@@ -1,7 +1,7 @@
 ﻿namespace ComputerPartsCatalog.Web.Controllers
 {
-    using System;
     using System.Threading.Tasks;
+
     using ComputerPartsCatalog.Common;
     using ComputerPartsCatalog.Data.Models;
     using ComputerPartsCatalog.Services.Data;
@@ -55,12 +55,12 @@
             return this.Redirect("/");
         }
 
-        public IActionResult All(int id = 1)
+        public async Task<IActionResult> All(int id = 1)
         {
             const int ItemsPerPage = 12;
             var viewModel = new ProductsListViewModel()
             {
-                Products = this.productsService.GetAll<ProductSimpleViewModel>(id, ItemsPerPage),
+                Products = await this.productsService.GetAll<ProductSimpleViewModel>(id, ItemsPerPage),
                 PageNumber = id,
                 ProductsCount = this.productsService.GetCount(),
                 ItemsPerPage = ItemsPerPage,

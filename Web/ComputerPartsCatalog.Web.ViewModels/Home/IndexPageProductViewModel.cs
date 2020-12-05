@@ -1,10 +1,10 @@
-﻿namespace ComputerPartsCatalog.Web.ViewModels.Products
+﻿namespace ComputerPartsCatalog.Web.ViewModels.Home
 {
     using AutoMapper;
     using ComputerPartsCatalog.Data.Models;
     using ComputerPartsCatalog.Services.Mapping;
 
-    public class ProductSimpleViewModel : IMapFrom<Product>, IHaveCustomMappings
+    public class IndexPageProductViewModel : IMapFrom<Product>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -16,7 +16,7 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Product, ProductSimpleViewModel>()
+            configuration.CreateMap<Product, IndexPageProductViewModel>()
                 .ForMember(x => x.ImageUrl, opt =>
                     opt.MapFrom(x =>
                     x.Image.RemoteImageUrl != null ?

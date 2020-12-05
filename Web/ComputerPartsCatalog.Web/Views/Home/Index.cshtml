@@ -1,9 +1,41 @@
 ﻿@using ComputerPartsCatalog.Common
+@model ComputerPartsCatalog.Web.ViewModels.Home.IndexPageViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center row">
+    <h1 class="display-4 text-white">Welcome to </h1><h1 class="text-warning"> @GlobalConstants.SystemName!</h1>
+
+    <div class="col-md-8">
+        <div class="row">
+            @foreach (var product in this.Model.Products)
+            {
+                <div class="card text-center col-md-4">
+                    <div class="card-header">
+                        <img class="card-img w-50" src="@product.ImageUrl" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title mt-2">@product.Name</h5>
+                        <hr />
+                        <h6 class="card-title mt-2">Price:@product.Price$</h6>
+                    </div>
+                    <hr />
+                    <div class="card-footer">
+                        <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning">Details</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item">Dekstops</li>
+            <li class="list-group-item">Dekstops</li>
+            <li class="list-group-item">Dekstops</li>
+            <li class="list-group-item">Dekstops</li>
+            <li class="list-group-item">Dekstops</li>
+            <li class="list-group-item">Dekstops</li>
+        </ul>
+    </div>
 </div>

@@ -1,16 +1,29 @@
 ﻿namespace ComputerPartsCatalog.Web.Controllers
 {
     using System.Diagnostics;
-
+    using System.Threading.Tasks;
+    using ComputerPartsCatalog.Services.Data;
     using ComputerPartsCatalog.Web.ViewModels;
-
+    using ComputerPartsCatalog.Web.ViewModels.Home;
+    using ComputerPartsCatalog.Web.ViewModels.Products;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
-        public IActionResult Index()
+        private readonly IProductsService productsService;
+
+        public HomeController(IProductsService productsService)
         {
-            return this.View();
+            this.productsService = productsService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var viewModel = new IndexPageViewModel()
+            {
+                Products = await this.productsService.GetRandom<ProductSimpleViewModel>(9),
+            };
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()
