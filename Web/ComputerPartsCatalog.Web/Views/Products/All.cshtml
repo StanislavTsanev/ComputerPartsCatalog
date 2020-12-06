@@ -4,30 +4,41 @@
     this.ViewData["Title"] = "All Products";
 }
 
-<h1 class="text-warning">@this.ViewData["Title"]</h1>
-
+<h1 class="display-4 text-warning text-center">@this.ViewData["Title"]</h1>
 <hr />
 <partial name="_PagingPartial" model="@Model">
-    <hr />
-    <div class="row">
-        @foreach (var product in this.Model.Products)
-        {
-            <div class="card text-center col-md-4">
-                <div class="card-header">
-                    <img class="card-img w-50" src="@product.ImageUrl" alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title mt-2">@product.Name</h5>
-                    <hr />
-                    <h6 class="card-title mt-2">Price:@product.Price$</h6>
-                </div>
-                <hr />
-                <div class="card-footer">
-                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning">Details</a>
-                </div>
+    <div class="text-center row">
+        <div class="col-md-4">        
+            <ul class="list-group">
+                <li class="list-group-item">Dekstops</li>
+                <li class="list-group-item">Dekstops</li>
+                <li class="list-group-item">Dekstops</li>
+                <li class="list-group-item">Dekstops</li>
+                <li class="list-group-item">Dekstops</li>
+                <li class="list-group-item">Dekstops</li>
+            </ul>
+        </div>
+        <div class="col-md-8">         
+            <div class="row">
+                @foreach (var product in this.Model.Products)
+                {
+                    <div class="card text-center col-md-4">
+                        <div class="card-header">
+                            <img class="card-img w-50" src="@product.ImageUrl" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">@product.Name</h5>
+                            <hr />
+                            <h6 class="card-title mt-2">Price:@product.Price$</h6>
+                        </div>
+                        <hr />
+                        <div class="card-footer">
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning">Details</a>
+                        </div>
+                    </div>
+                }
             </div>
-        }
+        </div>
     </div>
     <hr />
     <partial name="_PagingPartial" model="@Model">
-

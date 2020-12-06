@@ -1,12 +1,12 @@
-﻿@model ComputerPartsCatalog.Web.ViewModels.Products.AddProductInputModel
+﻿@model ComputerPartsCatalog.Web.ViewModels.Products.EditProductInputModel
 @{
-    this.ViewData["Title"] = "Add new product";
+    ViewData["Title"] = "Edit Product";
     var categories = this.Model.Categories.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-<form method="post" class="col-md-6 offset-md-3" enctype="multipart/form-data">
-    <h1 class="text-white">@this.ViewData["Title"]</h1>
-    <div class="text-danger" asp-validation-summary="All"></div>
+<h1 class="text-white text-center">@ViewData["Title"]</h1>
+
+<form method="post" class="col-md-6 offset-md-3" id="editForm">
     <div class="form-group">
         <label class="text-white" asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -34,27 +34,29 @@
         </select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label class="text-white" asp-for="Image"></label>
-        <input asp-for="Image" class="form-control" />
-        <span asp-validation-for="Image" class="text-danger"></span>
-    </div>
-    <div class="form-group" id="FeaturesContainer">
-        <label class="text-white" asp-for="Features"></label>
-        <a class="btn btn-success" onclick="AddMoreFeatures()">Add More</a>
-    </div>
     <hr />
-    <div class="text-center">
-        <input type="submit" class="btn btn-primary" />
-    </div>
+    <input type="hidden" asp-for="Id" />
 </form>
-
-    @section Scripts {
-        <script>
-            var featureIndex = 0;
-            function AddMoreFeatures() {
-                $("#FeaturesContainer").append("<div class='form-control'> Name: <input type='text' name='Features[" + featureIndex + "].Name' /> Type: <input type='text' name='Features[" + featureIndex + "].Type' /></div>");
-                featureIndex++;
-            }
-        </script>
-    }
+<div class="text-center">
+    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit">Save changes</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you want to save current changes?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="editForm.submit()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

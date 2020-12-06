@@ -105,5 +105,18 @@
                 .To<T>()
                 .ToListAsync();
         }
+
+        public async Task UpdateAsync(int id, EditProductInputModel input)
+        {
+            var product = this.productsRepository.All().FirstOrDefault(x => x.Id == id);
+
+            product.Name = input.Name;
+            product.Brand = input.Brand;
+            product.Price = input.Price;
+            product.Description = input.Description;
+            product.CategoryId = input.CategoryId;
+
+            await this.productsRepository.SaveChangesAsync();
+        }
     }
 }

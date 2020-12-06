@@ -75,5 +75,27 @@
 
             return this.View(viewModel);
         }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Edit(int id)
+        {
+            var viewModel = this.productsService.GetById<EditProductInputModel>(id);
+            viewModel.Categories = this.categoriesService.GetAllAsKeyValuePairs();
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Edit(int id, EditProductInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Categories = this.categoriesService.GetAllAsKeyValuePairs();
+                return this.View();
+            }
+
+            await this.productsService.UpdateAsync(id, input);
+            return this.RedirectToAction(nameof(this.Details), new { id });
+        }
     }
 }
