@@ -37,7 +37,7 @@
 
             foreach (var inputFeature in input.Features)
             {
-                var feature = this.featuresRepository.All().FirstOrDefault(x => x.Name == inputFeature.Name && x.Type == inputFeature.Type);
+                var feature = await this.featuresRepository.All().FirstOrDefaultAsync(x => x.Name == inputFeature.Name && x.Type == inputFeature.Type);
 
                 if (feature == null)
                 {
@@ -70,7 +70,15 @@
             await this.productsRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAll<T>(int page, int productsPerPage = 12)
+        public async Task DeleteAsync(int id)
+        {
+            var product = await this.productsRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            this.productsRepository.Delete(product);
+
+            await this.productsRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync<T>(int page, int productsPerPage = 12)
         {
             var products = await this.productsRepository.AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
@@ -82,22 +90,22 @@
             return products;
         }
 
-        public T GetById<T>(int id)
+        public async Task<T> GetByIdAsync<T>(int id)
         {
-            var product = this.productsRepository.AllAsNoTracking()
+            var product = await this.productsRepository.AllAsNoTracking()
                 .Where(p => p.Id == id)
                 .To<T>()
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return product;
         }
 
-        public int GetCount()
+        public async Task<int> GetCountAsync()
         {
-            return this.productsRepository.All().Count();
+            return await this.productsRepository.All().CountAsync();
         }
 
-        public async Task<IEnumerable<T>> GetRandom<T>(int count)
+        public async Task<IEnumerable<T>> GetRandomAsync<T>(int count)
         {
             return await this.productsRepository.All()
                 .OrderBy(x => Guid.NewGuid())
@@ -108,7 +116,7 @@
 
         public async Task UpdateAsync(int id, EditProductInputModel input)
         {
-            var product = this.productsRepository.All().FirstOrDefault(x => x.Id == id);
+            var product = await this.productsRepository.All().FirstOrDefaultAsync(x => x.Id == id);
 
             product.Name = input.Name;
             product.Brand = input.Brand;

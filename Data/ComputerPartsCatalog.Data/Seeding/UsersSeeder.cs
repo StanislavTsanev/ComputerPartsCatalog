@@ -22,6 +22,11 @@
                 Email = "admin@gmail.com",
             };
 
+            var user = new ApplicationUser()
+            {
+                Email = "user@gmail.com",
+            };
+
             var password = "admin123";
 
             var role = await roleManager.FindByNameAsync(GlobalConstants.AdministratorRoleName);

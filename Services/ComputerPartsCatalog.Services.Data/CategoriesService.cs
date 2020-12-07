@@ -5,7 +5,6 @@
 
     using ComputerPartsCatalog.Data.Common.Repositories;
     using ComputerPartsCatalog.Data.Models;
-    using ComputerPartsCatalog.Services.Mapping;
 
     public class CategoriesService : ICategoriesService
     {
@@ -23,7 +22,8 @@
                 {
                     x.Id,
                     x.Name,
-                }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+                }).ToList()
+                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
     }
 }

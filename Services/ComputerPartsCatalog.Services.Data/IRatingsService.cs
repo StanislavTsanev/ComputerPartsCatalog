@@ -6,6 +6,6 @@
     {
         Task SetRatingAsync(int productId, string userId, byte value);
 
-        double GetAverageRating(int productId);
+        Task<double> GetAverageRatingAsync(int productId);
     }
 }

@@ -41,7 +41,7 @@
     </div>
     <div class="form-group" id="FeaturesContainer">
         <label class="text-white" asp-for="Features"></label>
-        <a class="btn btn-success" onclick="AddMoreFeatures()">Add More</a>
+        <a class="btn btn-primary" onclick="AddMoreFeatures()">Add More</a>
     </div>
     <hr />
     <div class="text-center">
@@ -49,12 +49,12 @@
     </div>
 </form>
 
-    @section Scripts {
-        <script>
+@section Scripts {
+    <script>
             var featureIndex = 0;
             function AddMoreFeatures() {
                 $("#FeaturesContainer").append("<div class='form-control'> Name: <input type='text' name='Features[" + featureIndex + "].Name' /> Type: <input type='text' name='Features[" + featureIndex + "].Type' /></div>");
                 featureIndex++;
             }
-        </script>
-    }
+    </script>
+}

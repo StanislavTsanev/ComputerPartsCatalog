@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ComputerPartsCatalog.Common\ComputerPartsCatalog.Common.csproj" />
     <ProjectReference Include="..\..\Data\ComputerPartsCatalog.Data.Models\ComputerPartsCatalog.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\ComputerPartsCatalog.Services.Mapping\ComputerPartsCatalog.Services.Mapping.csproj" />
     <ProjectReference Include="..\ComputerPartsCatalog.Web.Infrastructure\ComputerPartsCatalog.Web.Infrastructure.csproj" />

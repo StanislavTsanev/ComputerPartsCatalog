@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="~/css/lazy.css">
     <style>
         body {
-            background-image: url(/img/background.jpg)
-             }
+            background-image: url(/img/background.jpg);
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
     </style>
 </head>
 <body>
@@ -28,23 +30,8 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Products" asp-action="All">All Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Products" asp-action="All">All</a>
-                        </li>
-                        @*@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Products" asp-action="Add">Add</a>
-                            </li>
-                        }
-                        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="Administration" asp-controller="Categories" asp-action="Index">Categories Admin</a>
-                            </li>
-                        }*@
                     </ul>
                 </div>
             </div>

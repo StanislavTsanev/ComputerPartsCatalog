@@ -5,6 +5,7 @@
 
     using ComputerPartsCatalog.Data.Common.Repositories;
     using ComputerPartsCatalog.Data.Models;
+    using Microsoft.EntityFrameworkCore;
 
     public class RatingsService : IRatingsService
     {
@@ -15,17 +16,17 @@
             this.ratingsRepository = ratingsRepository;
         }
 
-        public double GetAverageRating(int productId)
+        public async Task<double> GetAverageRatingAsync(int productId)
         {
-            return this.ratingsRepository.All()
+            return await this.ratingsRepository.All()
                 .Where(x => x.ProductId == productId)
-                .Average(x => x.Value);
+                .AverageAsync(x => x.Value);
         }
 
         public async Task SetRatingAsync(int productId, string userId, byte value)
         {
-            var rating = this.ratingsRepository.All()
-                .FirstOrDefault(x => x.ProductId == productId && x.UserId == userId);
+            var rating = await this.ratingsRepository.All()
+                .FirstOrDefaultAsync(x => x.ProductId == productId && x.UserId == userId);
 
             if (rating == null)
             {

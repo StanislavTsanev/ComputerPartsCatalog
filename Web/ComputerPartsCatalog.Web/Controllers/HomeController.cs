@@ -21,7 +21,7 @@
         {
             var viewModel = new IndexPageViewModel()
             {
-                Products = await this.productsService.GetRandom<ProductSimpleViewModel>(9),
+                Products = await this.productsService.GetRandomAsync<ProductSimpleViewModel>(9),
             };
             return this.View(viewModel);
         }

@@ -3,20 +3,22 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using ComputerPartsCatalog.Common;
+
     public abstract class BaseProductInputModel
     {
         [Required]
-        [MinLength(5)]
+        [MinLength(GlobalConstants.DataValidations.NameMinLength)]
         public string Name { get; set; }
 
         [Required]
-        [MinLength(2)]
+        [MinLength(GlobalConstants.DataValidations.BrandMinLength)]
         public string Brand { get; set; }
 
-        [Range(typeof(decimal), "0", "79228162514264337593543950335")]
+        [Range(typeof(decimal), GlobalConstants.DataValidations.MinPrice, GlobalConstants.DataValidations.MaxPrice)]
         public decimal Price { get; set; }
 
-        [MaxLength(1000)]
+        [MaxLength(GlobalConstants.DataValidations.DescriptionMaxLenght)]
         public string Description { get; set; }
 
         [Display(Name = "Category")]

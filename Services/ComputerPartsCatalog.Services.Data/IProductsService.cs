@@ -9,14 +9,16 @@
     {
         Task CreateAsync(AddProductInputModel input, string userId, string imagePath);
 
-        Task<IEnumerable<T>> GetAll<T>(int page, int productsPerPage = 12);
+        Task<IEnumerable<T>> GetAllAsync<T>(int page, int productsPerPage = 12);
 
-        Task<IEnumerable<T>> GetRandom<T>(int count);
+        Task<IEnumerable<T>> GetRandomAsync<T>(int count);
 
-        int GetCount();
+        Task<int> GetCountAsync();
 
-        T GetById<T>(int id);
+        Task<T> GetByIdAsync<T>(int id);
 
         Task UpdateAsync(int id, EditProductInputModel input);
+
+        Task DeleteAsync(int id);
     }
 }

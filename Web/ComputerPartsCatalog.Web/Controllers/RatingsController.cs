@@ -25,7 +25,7 @@
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await this.ratingsService.SetRatingAsync(input.ProductId, userId, input.Value);
-            var averageRating = this.ratingsService.GetAverageRating(input.ProductId);
+            var averageRating = await this.ratingsService.GetAverageRatingAsync(input.ProductId);
 
             return new PostRatingResponseModel { AverageRating = averageRating };
         }
