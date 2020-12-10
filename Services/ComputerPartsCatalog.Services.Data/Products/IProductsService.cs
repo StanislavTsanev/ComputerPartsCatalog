@@ -20,5 +20,7 @@
         Task UpdateAsync(int id, EditProductInputModel input);
 
         Task DeleteAsync(int id);
+
+        Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int id);
     }
 }

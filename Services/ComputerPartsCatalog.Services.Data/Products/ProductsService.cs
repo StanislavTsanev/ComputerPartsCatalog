@@ -51,7 +51,7 @@
                 });
             }
 
-            // /wwwroot/img/products/{id}.{ext}
+             // wwwroot / img / products /{ id}.{ ext}
             Directory.CreateDirectory($"{imagePath}/products/");
             var extension = Path.GetExtension(input.Image.FileName).TrimStart('.');
 
@@ -88,6 +88,11 @@
                 .ToListAsync();
 
             return products;
+        }
+
+        public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int id)
+        {
+            return await this.productsRepository.All().Where(x => x.CategoryId == id).To<T>().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync<T>(int id)

@@ -2,9 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ComputerPartsCatalog.Data.Common.Repositories;
     using ComputerPartsCatalog.Data.Models;
+    using ComputerPartsCatalog.Services.Mapping;
+    using Microsoft.EntityFrameworkCore;
 
     public class CategoriesService : ICategoriesService
     {
@@ -13,6 +16,13 @@
         public CategoriesService(IDeletableEntityRepository<Category> categoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
+        }
+
+        public async Task<IEnumerable<T>> GetAll<T>()
+        {
+            return await this.categoriesRepository.AllAsNoTracking()
+                .To<T>()
+                .ToListAsync();
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
