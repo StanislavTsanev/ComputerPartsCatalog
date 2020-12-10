@@ -3,7 +3,7 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using ComputerPartsCatalog.Services.Data;
+    using ComputerPartsCatalog.Services.Data.Ratings;
     using ComputerPartsCatalog.Web.ViewModels.Ratings;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;

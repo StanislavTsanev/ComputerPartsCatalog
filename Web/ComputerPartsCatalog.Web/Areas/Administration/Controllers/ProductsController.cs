@@ -3,7 +3,8 @@
     using System.Threading.Tasks;
 
     using ComputerPartsCatalog.Data.Models;
-    using ComputerPartsCatalog.Services.Data;
+    using ComputerPartsCatalog.Services.Data.Categories;
+    using ComputerPartsCatalog.Services.Data.Products;
     using ComputerPartsCatalog.Web.ViewModels.Products;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;

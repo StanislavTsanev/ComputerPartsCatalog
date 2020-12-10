@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    using ComputerPartsCatalog.Services.Data;
+    using ComputerPartsCatalog.Services.Data.Products;
     using ComputerPartsCatalog.Web.ViewModels.Products;
     using Microsoft.AspNetCore.Mvc;
 

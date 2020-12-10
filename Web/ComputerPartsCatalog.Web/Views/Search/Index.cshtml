@@ -1,0 +1,34 @@
+﻿@using ComputerPartsCatalog.Common
+@model ComputerPartsCatalog.Web.ViewModels.Search.SearchListInputModel
+@{
+    this.ViewData["Title"] = this.Model.Value;
+}
+
+<h1 class="display-4 text-white text-center">Results for <span class="text-warning">@this.ViewData["Title"]</span></h1>
+<hr />
+@if (!this.Model.Products.Any())
+{
+    <h2 class="text-white text-center">There`s nothing here :(</h2>
+}
+else
+{
+<div class="row">
+    @foreach (var product in this.Model.Products)
+    {
+        <div class="card text-center col-md-4">
+            <div class="card-header">
+                <img class="card-img w-50" src="@product.ImageUrl" alt="...">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title mt-2">@product.Name</h5>
+                <hr />
+                <h6 class="card-title mt-2">Price:@product.Price$</h6>
+            </div>
+            <hr />
+            <div class="card-footer">
+                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning">Details</a>
+            </div>
+        </div>
+    }
+</div>
+}

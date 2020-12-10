@@ -1,4 +1,4 @@
-﻿namespace ComputerPartsCatalog.Services.Data
+﻿namespace ComputerPartsCatalog.Services.Data.Ratings
 {
     using System.Linq;
     using System.Threading.Tasks;

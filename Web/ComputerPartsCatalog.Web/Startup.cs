@@ -9,6 +9,10 @@
     using ComputerPartsCatalog.Data.Repositories;
     using ComputerPartsCatalog.Data.Seeding;
     using ComputerPartsCatalog.Services.Data;
+    using ComputerPartsCatalog.Services.Data.Categories;
+    using ComputerPartsCatalog.Services.Data.Products;
+    using ComputerPartsCatalog.Services.Data.Ratings;
+    using ComputerPartsCatalog.Services.Data.Search;
     using ComputerPartsCatalog.Services.Mapping;
     using ComputerPartsCatalog.Services.Messaging;
     using ComputerPartsCatalog.Web.ViewModels;
@@ -71,6 +75,7 @@
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IProductsService, ProductsService>();
             services.AddTransient<IRatingsService, RatingsService>();
+            services.AddTransient<ISearchService, SearchService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

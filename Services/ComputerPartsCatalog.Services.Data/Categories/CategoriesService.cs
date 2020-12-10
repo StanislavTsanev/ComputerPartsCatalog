@@ -1,4 +1,4 @@
-﻿namespace ComputerPartsCatalog.Services.Data
+﻿namespace ComputerPartsCatalog.Services.Data.Categories
 {
     using System.Collections.Generic;
     using System.Linq;

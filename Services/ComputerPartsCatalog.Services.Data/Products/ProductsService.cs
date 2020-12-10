@@ -1,4 +1,4 @@
-﻿namespace ComputerPartsCatalog.Services.Data
+﻿namespace ComputerPartsCatalog.Services.Data.Products
 {
     using System;
     using System.Collections.Generic;
