@@ -1,8 +1,12 @@
 ﻿@model ComputerPartsCatalog.Web.ViewModels.Categories.CategoryViewModel
-
+@{
+    this.ViewData["Title"] = Model.Name;
+}
+<h1 class="display-4 text-white text-center">Prices for <span class="text-warning">@this.ViewData["Title"]</span></h1>
+<hr />
 <div class="text-center row">
     <div class="col-md-4">
-        @await Component.InvokeAsync("CategoryList");
+        <vc:category-list />
     </div>
     <div class="col-md-8">
         <div class="row">

@@ -8,5 +8,7 @@
         IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
 
         Task<IEnumerable<T>> GetAll<T>();
+
+        Task<T> GetById<T>(int id);
     }
 }

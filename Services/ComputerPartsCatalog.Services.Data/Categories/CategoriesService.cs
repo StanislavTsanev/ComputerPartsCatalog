@@ -35,5 +35,13 @@
                 }).ToList()
                 .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
+
+        public async Task<T> GetById<T>(int id)
+        {
+            return await this.categoriesRepository.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+        }
     }
 }

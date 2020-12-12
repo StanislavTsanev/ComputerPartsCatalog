@@ -1,6 +1,7 @@
 ﻿namespace ComputerPartsCatalog.Web.Controllers
 {
     using System.Threading.Tasks;
+
     using ComputerPartsCatalog.Services.Data.Categories;
     using ComputerPartsCatalog.Services.Data.Products;
     using ComputerPartsCatalog.Web.ViewModels.Categories;
@@ -41,10 +42,8 @@
 
         public async Task<IActionResult> Category(int id)
         {
-            var viewModel = new CategoryViewModel()
-            {
-                Products = await this.productsService.GetByCategoryIdAsync<ProductSimpleViewModel>(id),
-            };
+            var viewModel = await this.categoriesService.GetById<CategoryViewModel>(id);
+            viewModel.Products = await this.productsService.GetByCategoryIdAsync<ProductSimpleViewModel>(id);
 
             return this.View(viewModel);
         }
