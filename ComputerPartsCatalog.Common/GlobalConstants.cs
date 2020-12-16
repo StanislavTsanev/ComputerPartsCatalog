@@ -11,6 +11,8 @@
             public const string Password = "123456";
 
             public const string AdminEmail = "admin@gmail.com";
+
+            public const string UserEmail = "user@gmail.com";
         }
 
         public static class DataValidations
