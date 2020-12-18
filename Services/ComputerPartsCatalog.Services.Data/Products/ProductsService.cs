@@ -35,20 +35,23 @@
                 UserId = userId,
             };
 
-            foreach (var inputFeature in input.Features)
+            if (input.Features != null)
             {
-                var feature = await this.featuresRepository.All().FirstOrDefaultAsync(x => x.Name == inputFeature.Name && x.Type == inputFeature.Type);
-
-                if (feature == null)
+                foreach (var inputFeature in input.Features)
                 {
-                    feature = new Feature { Name = inputFeature.Name, Type = inputFeature.Type };
+                    var feature = await this.featuresRepository.All().FirstOrDefaultAsync(x => x.Name == inputFeature.Name && x.Type == inputFeature.Type);
+
+                    if (feature == null)
+                    {
+                        feature = new Feature { Name = inputFeature.Name, Type = inputFeature.Type };
+                    }
+
+                    product.ProductFeatures.Add(new ProductFeature
+                    {
+                        Feature = feature,
+                        Product = product,
+                    });
                 }
-
-                product.ProductFeatures.Add(new ProductFeature
-                {
-                    Feature = feature,
-                    Product = product,
-                });
             }
 
              // wwwroot / img / products /{ id}.{ ext}
