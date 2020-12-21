@@ -1,8 +1,10 @@
-﻿using ComputerPartsCatalog.Data.Common.Models;
-using System.Collections.Generic;
-
-namespace ComputerPartsCatalog.Data.Models
+﻿namespace ComputerPartsCatalog.Data.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using ComputerPartsCatalog.Data.Common.Models;
+
     public class Category : BaseDeletableModel<int>
     {
         public Category()
@@ -10,6 +12,7 @@ namespace ComputerPartsCatalog.Data.Models
             this.Products = new HashSet<Product>();
         }
 
+        [Required]
         public string Name { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

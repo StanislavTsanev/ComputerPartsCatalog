@@ -1,9 +1,10 @@
-﻿using ComputerPartsCatalog.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-
-namespace ComputerPartsCatalog.Data.Models
+﻿namespace ComputerPartsCatalog.Data.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using ComputerPartsCatalog.Data.Common.Models;
+
     public class Image : BaseModel<string>
     {
         public Image()
@@ -11,10 +12,12 @@ namespace ComputerPartsCatalog.Data.Models
             this.Id = Guid.NewGuid().ToString();
         }
 
+        [Required]
         public string Extension { get; set; }
 
         public string RemoteImageUrl { get; set; }
 
+        [Required]
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
