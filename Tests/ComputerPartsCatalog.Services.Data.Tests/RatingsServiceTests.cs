@@ -4,8 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using ComputerPartsCatalog.Data.Models;
-    using ComputerPartsCatalog.Services.Data.Categories;
     using ComputerPartsCatalog.Services.Data.Ratings;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;

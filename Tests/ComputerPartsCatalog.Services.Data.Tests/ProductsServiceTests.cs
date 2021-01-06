@@ -14,7 +14,7 @@
     public class ProductsServiceTests : BaseServicesTests
     {
         private IProductsService Service => this.ServiceProvider.GetRequiredService<IProductsService>();
-        /*
+
         [Fact]
         public async Task CreateAsyncShouldCreateCorrectly()
         {
@@ -36,13 +36,12 @@
                 Price = price,
                 CategoryId = categoryId,
             };
-
-            await this.Service.CreateAsync(inputModel, userId, $"wwwroot/img");
+            var imagePath = "TestPath";
+            await this.Service.CreateAsync(inputModel, userId, imagePath);
 
             var productsCount = await this.DbContext.Products.CountAsync();
             Assert.Equal(2, productsCount);
         }
-        */
 
         [Fact]
 

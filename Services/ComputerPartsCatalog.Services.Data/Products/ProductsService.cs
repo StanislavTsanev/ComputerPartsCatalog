@@ -54,20 +54,23 @@
                 }
             }
 
-             // wwwroot / img / products /{ id}.{ ext}
-            Directory.CreateDirectory($"{imagePath}/products/");
-            var extension = Path.GetExtension(input.Image.FileName).TrimStart('.');
-
-            var dbImage = new Image
+            if (input.Image != null)
             {
-                UserId = userId,
-                Extension = extension,
-            };
-            product.Image = dbImage;
+                // wwwroot / img / products /{ id}.{ ext}
+                Directory.CreateDirectory($"{imagePath}/products/");
+                var extension = Path.GetExtension(input.Image.FileName).TrimStart('.');
 
-            var physicalPath = $"{imagePath}/products/{dbImage.Id}.{extension}";
-            using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
-            await input.Image.CopyToAsync(fileStream);
+                var dbImage = new Image
+                {
+                    UserId = userId,
+                    Extension = extension,
+                };
+                product.Image = dbImage;
+
+                var physicalPath = $"{imagePath}/products/{dbImage.Id}.{extension}";
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await input.Image.CopyToAsync(fileStream);
+            }
 
             await this.productsRepository.AddAsync(product);
             await this.productsRepository.SaveChangesAsync();
