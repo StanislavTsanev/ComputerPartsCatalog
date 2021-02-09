@@ -5,9 +5,9 @@
     using ComputerPartsCatalog.Data;
     using ComputerPartsCatalog.Data.Common.Repositories;
     using ComputerPartsCatalog.Data.Repositories;
+    using ComputerPartsCatalog.Services.Data.Categories;
     using ComputerPartsCatalog.Services.Data.Products;
     using ComputerPartsCatalog.Services.Data.Ratings;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -44,6 +44,7 @@
             // App services
             services.AddTransient<IProductsService, ProductsService>();
             services.AddTransient<IRatingsService, RatingsService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
 
             return services;
         }
